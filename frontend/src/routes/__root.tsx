@@ -4,7 +4,7 @@ import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 export const Route = createRootRoute({
   component: () => (
     <>
-      <div className="p-2 flex justify-between max-w-7xl mx-auto">
+      <div className="p-2 flex items-center justify-between max-w-7xl mx-auto">
         <div>
           <Link to="/">
             <img
@@ -15,7 +15,7 @@ export const Route = createRootRoute({
           </Link>
         </div>
         <div className="flex gap-4">
-          <Link to="/" className="[&.active]:font-bold">
+          <Link to="/" className="[&.active]:text-pink-300 font-bold ">
             Home
           </Link>
           <Link to="/" className="[&.active]:font-bold">
@@ -28,11 +28,14 @@ export const Route = createRootRoute({
             Resources
           </Link>
         </div>
-        <div className="flex gap-4">
-          <Link to="/" className="[&.active]:font-bold">
+        <div className="flex items-center gap-4">
+          <Link to="/login" className="[&.active]:font-bold">
             Log in
           </Link>
-          <Link to="/" className="[&.active]:font-bold">
+          <Link
+            to="/"
+            className="[&.active]:font-bold font-white bg-gray-800 px-3 py-4 rounded-full text-white"
+          >
             Start your 14 days free trial!
           </Link>
         </div>
