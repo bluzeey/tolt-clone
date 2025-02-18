@@ -24,6 +24,8 @@ export const signUp = async (
         password: password,
       },
     });
+    req.session.user = newUser;
+    req.session.save();
     res.json(newUser);
     next();
   }
@@ -34,9 +36,11 @@ export const login = async (req: Request, res: Response) => {
   let user = await prisma.user.findFirst({
     select: {
       email: true,
-      password: true,
+      firstName: true,
+      lastName: true,
     },
   });
+  res.json(user);
   if (!user) {
     res.status(403).send("User not found");
   }

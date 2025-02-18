@@ -20,7 +20,7 @@ const signUp = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         },
     });
     if (!user) {
-        yield prisma.user.create({
+        const newUser = yield prisma.user.create({
             data: {
                 email: email,
                 firstName: firstName,
@@ -28,10 +28,25 @@ const signUp = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
                 password: password,
             },
         });
-        res.json(user);
+        req.session.user = newUser;
+        req.session.save();
+        res.json(newUser);
         next();
     }
 });
 exports.signUp = signUp;
-const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () { });
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    let user = yield prisma.user.findFirst({
+        select: {
+            email: true,
+            firstName: true,
+            lastName: true,
+        },
+    });
+    res.json(user);
+    if (!user) {
+        res.status(403).send("User not found");
+    }
+});
 exports.login = login;
