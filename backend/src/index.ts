@@ -1,13 +1,18 @@
 // Importing module
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import routes from "./routes/index";
+import authRoutes from "./routes/auth";
 
 const app = express();
+
 const PORT = 3000;
 
 // Handling GET / Request
-app.get("/", (req, res) => {
-  res.send("Welcome to typescript backend!");
-});
+app.use(express.json());
+app.use(cors());
+app.use("/", routes);
+app.use("/auth", authRoutes);
 
 // Server setup
 app.listen(PORT, () => {
