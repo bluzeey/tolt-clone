@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useUserStore } from "../../stores/userStore";
 
 export default function LoginForm() {
-  const [firstName, setFirstName] = useState<string>("");
+  const firstName = useUserStore((state) => state.firstName);
+  const setFirstName = useUserStore((state) => state.setFirstName);
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   return (
