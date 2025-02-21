@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUserStore } from "../../stores/userStore";
+import { useUserStore } from "../stores/userStore";
 
 export default function LoginForm() {
   const firstName = useUserStore((state) => state.firstName);
@@ -77,7 +77,7 @@ export default function LoginForm() {
           <p>Already have a Tolt account?&nbsp;</p>
           <a
             className="underline cursor-pointer text-[#052D2B]"
-            href="/register"
+            href="/sign-in"
           >
             Sign in!
           </a>
